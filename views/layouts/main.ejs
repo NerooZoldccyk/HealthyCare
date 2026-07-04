@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>HealthyCare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .sidebar{
+            width:240px;
+            height:100vh;
+            position:fixed;
+            background:#0d6efd;
+            color:white;
+        }
+
+        .sidebar h3{
+            padding:20px;
+            text-align:center;
+            border-bottom:1px solid rgba(255,255,255,.2);
+            margin-bottom:0;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 20px;
+            transition:.3s;
+        }
+
+        .sidebar a:hover{
+            background:rgba(255,255,255,.15);
+        }
+
+        .content{
+            margin-left:240px;
+            padding:30px;
+        }
+
+        .navbar{
+            background:white;
+            border-radius:10px;
+            margin-bottom:25px;
+        }
+
+        .user-info{
+            text-align:center;
+            padding:15px;
+            border-bottom:1px solid rgba(255,255,255,.2);
+        }
+
+        .user-info h6{
+            margin:0;
+            color:white;
+        }
+
+        .user-info small{
+            color:#e8e8e8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h3>HealthyCare</h3>
+
+    <% if(session && session.user){ %>
+
+    <div class="user-info">
+
+        <h6><%= session.user.name %></h6>
+
+        <small>
+
+            Role :
+            <b><%= session.user.role.toUpperCase() %></b>
+
+        </small>
+
+    </div>
+
+    <% } %>
+
+    <a href="/">
+
+        <i class="bi bi-speedometer2"></i>
+
+        Dashboard
+
+    </a>
+
+    <% if(session && session.user){ %>
+
+        <% if(session.user.role === "admin"){ %>
+
+            <a href="/doctors">
+
+                <i class="bi bi-hospital"></i>
+
+                Doctor
+
+            </a>
+
+            <a href="/patients">
+
+                <i class="bi bi-person"></i>
+
+                Patient
+
+            </a>
+
+        <% } %>
+
+        <a href="/reservations">
+
+            <i class="bi bi-calendar-check"></i>
+
+            Reservation
+
+        </a>
+
+        <a href="/logout"
+           onclick="return confirm('Apakah Anda yakin ingin logout?')">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </a>
+
+    <% } %>
+
+</div>
+
+<div class="content">
+
+    <nav class="navbar shadow-sm p-3">
+
+        <div class="d-flex justify-content-between align-items-center w-100">
+
+            <h4 class="m-0">
+
+                Smart Health Management System
+
+            </h4>
+
+            <% if(session && session.user){ %>
+
+            <div>
+
+                <span class="badge bg-primary">
+
+                    <%= session.user.name %>
+
+                </span>
+
+                <span class="badge bg-success">
+
+                    <%= session.user.role.toUpperCase() %>
+
+                </span>
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+    </nav>
+
+    <%- body %>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

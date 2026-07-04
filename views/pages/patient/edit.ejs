@@ -1,0 +1,102 @@
+<h2 class="mb-4">Edit Pasien</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form action="/patients/edit/<%= patient.id %>" method="POST">
+
+<div class="mb-3">
+
+<label>Nama Pasien</label>
+
+<input
+type="text"
+name="name"
+class="form-control"
+value="<%= patient.name %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Gender</label>
+
+<select
+name="gender"
+class="form-control">
+
+<option value="Laki-laki" <%= patient.gender=="Laki-laki"?"selected":"" %>>
+
+Laki-laki
+
+</option>
+
+<option value="Perempuan" <%= patient.gender=="Perempuan"?"selected":"" %>>
+
+Perempuan
+
+</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Umur</label>
+
+<input
+type="number"
+name="age"
+class="form-control"
+value="<%= patient.age %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>No HP</label>
+
+<input
+type="text"
+name="phone"
+class="form-control"
+value="<%= patient.phone %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Alamat</label>
+
+<textarea
+name="address"
+class="form-control"
+rows="3"
+required><%= patient.address %></textarea>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-success">
+
+Update
+
+</button>
+
+<a href="/patients" class="btn btn-secondary">
+
+Kembali
+
+</a>
+
+</form>
+
+</div>
+
+</div>

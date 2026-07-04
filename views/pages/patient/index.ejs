@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Data Pasien</h2>
+
+    <% if(session.user.role === "admin"){ %>
+
+    <a href="/patients/add" class="btn btn-primary">
+        Tambah Pasien
+    </a>
+
+    <% } %>
+
+</div>
+
+<table class="table table-bordered table-striped shadow">
+
+    <thead class="table-primary">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Gender</th>
+            <th>Umur</th>
+            <th>Phone</th>
+            <th>Address</th>
+
+            <% if(session.user.role === "admin"){ %>
+            <th width="180">Action</th>
+            <% } %>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <% patients.forEach(function(p){ %>
+
+        <tr>
+
+            <td><%= p.id %></td>
+
+            <td><%= p.name %></td>
+
+            <td><%= p.gender %></td>
+
+            <td><%= p.age %></td>
+
+            <td><%= p.phone %></td>
+
+            <td><%= p.address %></td>
+
+            <% if(session.user.role === "admin"){ %>
+
+            <td>
+
+                <a href="/patients/edit/<%= p.id %>"
+                   class="btn btn-warning btn-sm">
+
+                    Edit
+
+                </a>
+
+                <a href="/patients/delete/<%= p.id %>"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Yakin ingin menghapus pasien <%= p.name %>?')">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+            <% } %>
+
+        </tr>
+
+        <% }) %>
+
+    </tbody>
+
+</table>

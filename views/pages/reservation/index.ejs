@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Data Reservasi</h2>
+
+    <% if(session.user.role==="admin"){ %>
+
+    <a href="/reservations/add" class="btn btn-primary">
+
+        Tambah Reservasi
+
+    </a>
+
+    <% } %>
+
+</div>
+
+<table class="table table-bordered table-striped shadow">
+
+    <thead class="table-primary">
+
+        <tr>
+
+            <th>No</th>
+            <th>Pasien</th>
+            <th>Dokter</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+
+            <% if(session.user.role==="admin"){ %>
+
+            <th width="180">Action</th>
+
+            <% } %>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <% if(reservations.length===0){ %>
+
+        <tr>
+
+            <td colspan="6" class="text-center">
+
+                Belum ada data reservasi.
+
+            </td>
+
+        </tr>
+
+        <% } %>
+
+        <% reservations.forEach(function(r,index){ %>
+
+        <tr>
+
+            <td><%= index+1 %></td>
+
+            <td><%= r.Patient.name %></td>
+
+            <td><%= r.Doctor.name %></td>
+
+            <td><%= new Date(r.reservationDate).toLocaleDateString('id-ID') %></td>
+
+            <td>
+
+                <span class="badge bg-primary">
+
+                    <%= r.status %>
+
+                </span>
+
+            </td>
+
+            <% if(session.user.role==="admin"){ %>
+
+            <td>
+
+                <a href="/reservations/edit/<%= r.id %>" class="btn btn-warning btn-sm">
+
+                    Edit
+
+                </a>
+
+                <a href="/reservations/delete/<%= r.id %>"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Yakin ingin menghapus reservasi ini?')">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+            <% } %>
+
+        </tr>
+
+        <% }) %>
+
+    </tbody>
+
+</table>

@@ -1,0 +1,62 @@
+<h2 class="mb-4">Edit Reservasi</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form action="/reservations/edit/<%= reservation.id %>" method="POST">
+
+<div class="mb-3">
+
+<label>Status</label>
+
+<select
+name="status"
+class="form-control">
+
+<option value="Menunggu"
+<%= reservation.status=="Menunggu"?"selected":"" %>>
+
+Menunggu
+
+</option>
+
+<option value="Selesai"
+<%= reservation.status=="Selesai"?"selected":"" %>>
+
+Selesai
+
+</option>
+
+<option value="Dibatalkan"
+<%= reservation.status=="Dibatalkan"?"selected":"" %>>
+
+Dibatalkan
+
+</option>
+
+</select>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-success">
+
+Update
+
+</button>
+
+<a
+href="/reservations"
+class="btn btn-secondary">
+
+Kembali
+
+</a>
+
+</form>
+
+</div>
+
+</div>

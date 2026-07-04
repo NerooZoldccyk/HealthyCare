@@ -1,0 +1,103 @@
+<h2 class="mb-4">Tambah Reservasi</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form action="/reservations/add" method="POST">
+
+<div class="mb-3">
+
+<label>Pasien</label>
+
+<select
+name="patientId"
+class="form-control">
+
+<% patients.forEach(function(p){ %>
+
+<option value="<%= p.id %>">
+
+<%= p.name %>
+
+</option>
+
+<% }) %>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Dokter</label>
+
+<select
+name="doctorId"
+class="form-control">
+
+<% doctors.forEach(function(d){ %>
+
+<option value="<%= d.id %>">
+
+<%= d.name %>
+
+</option>
+
+<% }) %>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Tanggal Reservasi</label>
+
+<input
+type="datetime-local"
+name="reservationDate"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Status</label>
+
+<select
+name="status"
+class="form-control">
+
+<option>Menunggu</option>
+
+<option>Selesai</option>
+
+<option>Dibatalkan</option>
+
+</select>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-success">
+
+Simpan
+
+</button>
+
+<a
+href="/reservations"
+class="btn btn-secondary">
+
+Kembali
+
+</a>
+
+</form>
+
+</div>
+
+</div>

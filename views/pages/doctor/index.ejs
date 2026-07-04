@@ -1,0 +1,153 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Data Dokter</h2>
+
+    <% if(session.user.role==="admin"){ %>
+
+    <a href="/doctors/add" class="btn btn-primary">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Tambah Dokter
+
+    </a>
+
+    <% } %>
+
+</div>
+
+<form action="/doctors" method="GET" class="mb-3">
+
+<div class="input-group">
+
+<input
+type="text"
+name="search"
+class="form-control"
+placeholder="Cari nama dokter..."
+value="<%= search || '' %>">
+
+<button class="btn btn-primary">
+
+<i class="bi bi-search"></i>
+
+Cari
+
+</button>
+
+</div>
+
+</form>
+
+<table class="table table-bordered table-striped shadow">
+
+<thead class="table-primary">
+
+<tr>
+
+<th>No</th>
+
+<th>Nama</th>
+
+<th>Specialist</th>
+
+<th>Phone</th>
+
+<th>Address</th>
+
+<% if(session.user.role==="admin"){ %>
+
+<th width="180">
+
+Action
+
+</th>
+
+<% } %>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<% if(doctors.length===0){ %>
+
+<tr>
+
+<td colspan="6" class="text-center">
+
+Tidak ada data dokter.
+
+</td>
+
+</tr>
+
+<% } %>
+
+<% doctors.forEach(function(d,index){ %>
+
+<tr>
+
+<td>
+
+<%= index+1 %>
+
+</td>
+
+<td>
+
+<%= d.name %>
+
+</td>
+
+<td>
+
+<%= d.specialist %>
+
+</td>
+
+<td>
+
+<%= d.phone %>
+
+</td>
+
+<td>
+
+<%= d.address %>
+
+</td>
+
+<% if(session.user.role==="admin"){ %>
+
+<td>
+
+<a
+href="/doctors/edit/<%= d.id %>"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a
+href="/doctors/delete/<%= d.id %>"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Yakin ingin menghapus dokter <%= d.name %>?')">
+
+Delete
+
+</a>
+
+</td>
+
+<% } %>
+
+</tr>
+
+<% }) %>
+
+</tbody>
+
+</table>

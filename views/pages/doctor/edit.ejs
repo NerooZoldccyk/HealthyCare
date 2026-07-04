@@ -1,0 +1,113 @@
+<h2 class="mb-4">Edit Dokter</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form id="editForm" action="/doctors/edit/<%= doctor.id %>" method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">Nama Dokter</label>
+
+<input
+type="text"
+name="name"
+class="form-control"
+value="<%= doctor.name %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Spesialis</label>
+
+<input
+type="text"
+name="specialist"
+class="form-control"
+value="<%= doctor.specialist %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Nomor HP</label>
+
+<input
+type="text"
+name="phone"
+class="form-control"
+value="<%= doctor.phone %>"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Alamat</label>
+
+<textarea
+name="address"
+class="form-control"
+rows="3"
+required><%= doctor.address %></textarea>
+
+</div>
+
+<button
+type="button"
+class="btn btn-success"
+onclick="updateDokter()">
+
+Update
+
+</button>
+
+<a href="/doctors" class="btn btn-secondary">
+
+Kembali
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+function updateDokter(){
+
+Swal.fire({
+
+title:'Update Data?',
+
+text:'Simpan perubahan dokter ini?',
+
+icon:'question',
+
+showCancelButton:true,
+
+confirmButtonText:'Ya, Update',
+
+cancelButtonText:'Batal'
+
+}).then((result)=>{
+
+if(result.isConfirmed){
+
+document.getElementById("editForm").submit();
+
+}
+
+});
+
+}
+
+</script>
